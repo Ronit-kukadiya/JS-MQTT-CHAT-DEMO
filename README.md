@@ -9,4 +9,4 @@ NOTE: In a Single Room more than 2 users can join in. On the receive side, all t
 
 ❗⚠️ ONE REFRESH AND IT'S ALL GONE. ⚠️❗
 
-visit the live demo here > https://ronit-kukadiya.github.io/JS-MQTT-CHAT-TEST/
+visit the live demo here > https://ronit-kukadiya.github.io/JS-MQTT-CHAT-DEMO/
