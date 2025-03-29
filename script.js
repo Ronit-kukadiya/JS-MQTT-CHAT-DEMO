@@ -9,7 +9,7 @@ const options = {
 };
 // THE OPTIONS ARE NOT USED IN THIS PROJECT
 
-const client = mqtt.connect("wss://broker.hivemq.com:8884/mqtt"); //using hivemq
+const client = mqtt.connect("wss://broker.emqx.io:8084/mqtt"); //using hivemq
 //NOTE: This is not a secure way of using a broker, people using the same topic name on the same broker(here hivemq) will be able to see each other's messages
 //if you want to improve it, try making your own broker.
 
