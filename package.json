@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "linkify-html": "^4.2.0",
+    "linkifyjs": "^4.2.0",
     "mqtt": "^5.10.3"
   }
 }

@@ -21,6 +21,8 @@
   --RecvBbl: rgb(64, 69, 69);
   --TxtColor: aliceblue;
   --MsgInpBG: rgb(60, 65, 65);
+  --LinkOnSent: rgb(78, 196, 255);
+  --LinkOnRecv: rgb(49, 111, 255);
 }
 
 * {
@@ -72,6 +74,10 @@
   color: var(--TxtColor);
 }
 
+.StyleSent a {
+  color: var(--LinkOnSent);
+}
+
 .StyleSent::selection {
   color: var(--TxtColor);
   background: var(--RecvBbl);
@@ -90,6 +96,10 @@
   background-color: var(--RecvBbl);
   align-self: flex-start;
   color: var(--TxtColor);
+}
+
+.StyleReceive a{
+  color: var(--LinkOnRecv);
 }
 
 .chatroom-name {

@@ -9,6 +9,10 @@ const options = {
 };
 // THE OPTIONS ARE NOT USED IN THIS PROJECT
 
+const linkoptions = {
+  target : "_blank"
+};
+
 const client = mqtt.connect("wss://broker.emqx.io:8084/mqtt"); //using hivemq
 //NOTE: This is not a secure way of using a broker, people using the same topic name on the same broker(here hivemq) will be able to see each other's messages
 //if you want to improve it, try making your own broker.
@@ -52,6 +56,10 @@ function joinChat() {
       console.log(`Subscribed to ${WORD}`);
       roomname.innerText = WORD;
     }
+    else{
+      console.log("failed to connect");
+      console.log(err);
+    }
   });
 
   msg.focus();
@@ -77,7 +85,7 @@ client.on("message", (topic, message) => {
   if (topic === WORD) {
     const receive = document.createElement("div");
     receive.classList.add("StyleReceive");
-    receive.textContent = message.toString();
+    receive.innerHTML = linkifyHtml( message.toString(),linkoptions);
 
     let shouldScroll = isUserNearBottom();
 
@@ -109,7 +117,7 @@ function sendMessage() {
 
   const sent = document.createElement("div");
   sent.classList.add("StyleSent");
-  sent.textContent = message;
+  sent.innerHTML = linkifyHtml(message,linkoptions);
   document.querySelector(".sent-recv").appendChild(sent);
   sent.scrollIntoView({ behavior: "smooth" });
   sentSound.play();
