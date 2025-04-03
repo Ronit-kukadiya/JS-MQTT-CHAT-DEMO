@@ -46,6 +46,23 @@
   white-space: nowrap;
 }
 
+.custom-swal {
+  background-color: var(--ChatSpace);
+}
+
+.custom-swal .swal-text {
+  color: var(--TxtColor) !important;
+}
+.custom-swal-button {
+  background-color: var(--ChatIDDiv);
+  color: var(--TxtColor) !important;
+}
+
+.custom-swal-button:hover {
+  background-color: var(--ButtonsHoverBG) !important;
+  color: var(--TxtColor) !important;
+}
+
 .sent-recv {
   background-color: var(--ChatSpace);
   height: calc(100vh - 10vh);
@@ -98,7 +115,7 @@
   color: var(--TxtColor);
 }
 
-.StyleReceive a{
+.StyleReceive a {
   color: var(--LinkOnRecv);
 }
 

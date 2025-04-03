@@ -10,7 +10,7 @@ const options = {
 // THE OPTIONS ARE NOT USED IN THIS PROJECT
 
 const linkoptions = {
-  target : "_blank"
+  target: "_blank",
 };
 
 const client = mqtt.connect("wss://broker.emqx.io:8084/mqtt"); //using hivemq
@@ -19,9 +19,9 @@ const client = mqtt.connect("wss://broker.emqx.io:8084/mqtt"); //using hivemq
 
 let WORD = "";
 let sentIgnore = false; //this setIgnore is used to block/ignore the message sent by you from displaying on the received side since the message
-                        //go to the same topic and this can lead to what you send being displayed on the receive side, that is the nature of Mqtt,
-                        //that's how it works. this ignore is not the best solution to deal with this as spamming messages/continuous messages being
-                        // sent can LEAK into the receive side since 'on.message' is async and constantly listens for incoming messages
+//go to the same topic and this can lead to what you send being displayed on the receive side, that is the nature of Mqtt,
+//that's how it works. this ignore is not the best solution to deal with this as spamming messages/continuous messages being
+// sent can LEAK into the receive side since 'on.message' is async and constantly listens for incoming messages
 
 let msg = document.getElementById("msg");
 let room = document.getElementById("room");
@@ -55,8 +55,7 @@ function joinChat() {
     if (!err) {
       console.log(`Subscribed to ${WORD}`);
       roomname.innerText = WORD;
-    }
-    else{
+    } else {
       console.log("failed to connect");
       console.log(err);
     }
@@ -85,7 +84,7 @@ client.on("message", (topic, message) => {
   if (topic === WORD) {
     const receive = document.createElement("div");
     receive.classList.add("StyleReceive");
-    receive.innerHTML = linkifyHtml( message.toString(),linkoptions);
+    receive.innerHTML = linkifyHtml(message.toString(), linkoptions);
 
     let shouldScroll = isUserNearBottom();
 
@@ -105,8 +104,18 @@ msg.addEventListener("keypress", function (event) {
 
 function sendMessage() {
   if (WORD === "") {
-    alert("join a room first to send message!");
-    room.focus();
+    swal({
+      title: "",
+      text: "join a room first to send message!",
+      icon: "info",
+      button: {
+        text: "GOT IT!",
+        className: "custom-swal-button"
+      },
+      className: "custom-swal",
+    }).then(() => {
+      room.focus();
+    });
     return;
   }
   var message = msg.value;
@@ -117,7 +126,7 @@ function sendMessage() {
 
   const sent = document.createElement("div");
   sent.classList.add("StyleSent");
-  sent.innerHTML = linkifyHtml(message,linkoptions);
+  sent.innerHTML = linkifyHtml(message, linkoptions);
   document.querySelector(".sent-recv").appendChild(sent);
   sent.scrollIntoView({ behavior: "smooth" });
   sentSound.play();
